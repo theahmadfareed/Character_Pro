@@ -18,24 +18,26 @@ export const SearchInput = () => {
   const [value, setValue] = useState(name || "");
   const debouncedValue = useDebounce<string>(value, 500);
 
-
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
   };
 
   useEffect(() => {
-    const query = { 
-      name: debouncedValue, 
+    const query = {
+      name: debouncedValue,
       categoryId: categoryId,
     };
 
-    const url = qs.stringifyUrl({
-      url: window.location.href,
-      query
-    }, { skipNull: true, skipEmptyString: true });
+    const url = qs.stringifyUrl(
+      {
+        url: window.location.href,
+        query,
+      },
+      { skipNull: true, skipEmptyString: true }
+    );
 
     router.push(url);
-  }, [debouncedValue, router, categoryId])
+  }, [debouncedValue, router, categoryId]);
 
   return (
     <div className="relative">
@@ -47,5 +49,5 @@ export const SearchInput = () => {
         className="pl-10 bg-primary/10"
       />
     </div>
-  )
+  );
 };

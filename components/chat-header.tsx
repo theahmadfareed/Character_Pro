@@ -1,18 +1,24 @@
 "use client";
 
 import axios from "axios";
-import { ChevronLeft, Edit, MessagesSquare, MoreVertical, Trash } from "lucide-react";
+import {
+  ChevronLeft,
+  Edit,
+  MessagesSquare,
+  MoreVertical,
+  Trash,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Companion, Message } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import { BotAvatar } from "@/components/bot-avatar";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -23,11 +29,9 @@ interface ChatHeaderProps {
       messages: number;
     };
   };
-};
+}
 
-export const ChatHeader = ({
-  companion,
-}: ChatHeaderProps) => {
+export const ChatHeader = ({ companion }: ChatHeaderProps) => {
   const router = useRouter();
   const { user } = useUser();
   const { toast } = useToast();
@@ -36,18 +40,18 @@ export const ChatHeader = ({
     try {
       await axios.delete(`/api/companion/${companion.id}`);
       toast({
-        description: "Success."
+        description: "Success.",
       });
       router.refresh();
       router.push("/");
     } catch (error) {
       toast({
         variant: "destructive",
-        description: "Something went wrong."
-      })
+        description: "Something went wrong.",
+      });
     }
-  }
-  
+  };
+
   return (
     <div className="flex w-full justify-between items-center border-b border-primary/10 pb-4">
       <div className="flex gap-x-2 items-center">
@@ -76,7 +80,9 @@ export const ChatHeader = ({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => router.push(`/companion/${companion.id}`)}>
+            <DropdownMenuItem
+              onClick={() => router.push(`/companion/${companion.id}`)}
+            >
               <Edit className="w-4 h-4 mr-2" />
               Edit
             </DropdownMenuItem>

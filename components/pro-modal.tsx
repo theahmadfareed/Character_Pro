@@ -10,7 +10,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
 import { useProModal } from "@/hooks/use-pro-modal";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +26,6 @@ export const ProModal = () => {
     setIsMounted(true);
   }, []);
 
-
   const onSubscribe = async () => {
     try {
       setLoading(true);
@@ -41,7 +40,7 @@ export const ProModal = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   if (!isMounted) {
     return null;
@@ -51,13 +50,11 @@ export const ProModal = () => {
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
         <DialogHeader className="space-y-4">
-          <DialogTitle className="text-center">
-            Upgrade to Pro
-          </DialogTitle>
+          <DialogTitle className="text-center">Upgrade to Pro</DialogTitle>
           <DialogDescription className="text-center space-y-2">
             Create
             <span className="text-sky-500 mx-1 font-medium">Custom AI</span>
-            Companions!
+            Characters!
           </DialogDescription>
         </DialogHeader>
         <Separator />

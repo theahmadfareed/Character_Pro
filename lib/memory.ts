@@ -41,7 +41,7 @@ export class MemoryManager {
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
       { pineconeIndex }
-    ); 
+    );
 
     const similarDocs = await vectorStore
       .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
@@ -113,4 +113,3 @@ export class MemoryManager {
     }
   }
 }
-

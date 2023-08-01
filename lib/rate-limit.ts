@@ -10,4 +10,4 @@ export async function rateLimit(identifier: string) {
   });
 
   return await ratelimit.limit(identifier);
-};
+}

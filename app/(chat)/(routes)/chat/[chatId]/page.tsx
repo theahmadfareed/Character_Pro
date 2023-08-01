@@ -8,12 +8,10 @@ import { ChatClient } from "./components/client";
 interface ChatIdPageProps {
   params: {
     chatId: string;
-  }
+  };
 }
 
-const ChatIdPage = async ({
-  params
-}: ChatIdPageProps) => {
+const ChatIdPage = async ({ params }: ChatIdPageProps) => {
   const { userId } = auth();
 
   if (!userId) {
@@ -22,12 +20,12 @@ const ChatIdPage = async ({
 
   const companion = await prismadb.companion.findUnique({
     where: {
-      id: params.chatId
+      id: params.chatId,
     },
     include: {
       messages: {
         orderBy: {
-          createdAt: "asc"
+          createdAt: "asc",
         },
         where: {
           userId,
@@ -36,19 +34,16 @@ const ChatIdPage = async ({
       _count: {
         select: {
           messages: true,
-        }
-      }
-    }
+        },
+      },
+    },
   });
-
 
   if (!companion) {
     return redirect("/");
   }
 
-  return (
-    <ChatClient companion={companion} />
-  );
-}
- 
+  return <ChatClient companion={companion} />;
+};
+
 export default ChatIdPage;
